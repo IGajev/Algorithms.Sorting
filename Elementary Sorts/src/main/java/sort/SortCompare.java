@@ -19,6 +19,12 @@ public class SortCompare {
     } else if (alg.equals("Merge")) {
       Merge.sort(a);
       assert Merge.isSorted(a);
+    } else if (alg.equals("MergeBU")) {
+      MergeBU.sort(a);
+      assert MergeBU.isSorted(a);
+    } else if (alg.equals("Quick")) {
+      Quick.sort(a);
+      assert Quick.isSorted(a);
     } else {
       throw new RuntimeException("Algorhithm " + alg + " not suported!");
     }
