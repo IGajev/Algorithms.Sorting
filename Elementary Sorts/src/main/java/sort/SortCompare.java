@@ -25,6 +25,9 @@ public class SortCompare {
     } else if (alg.equals("Quick")) {
       Quick.sort(a);
       assert Quick.isSorted(a);
+    } else if (alg.equals("Quick3way")) {
+      Quick3way.sort(a);
+      assert Quick3way.isSorted(a);
     } else {
       throw new RuntimeException("Algorhithm " + alg + " not suported!");
     }
