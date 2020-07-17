@@ -3,7 +3,6 @@ package exercises;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import org.junit.Test;
-import sort.Quick;
 
 /**
  * 2.3.5 Give a code fragment that sorts an array that is known to consist of items having
@@ -11,6 +10,9 @@ import sort.Quick;
  */
 public class QuickTwoDistinctKeys {
   private static int cost;
+
+  private static Comparable small;
+  private static Comparable large;
 
   @Test
   public void sort_twoKeysArray4_isSorted() {
@@ -58,6 +60,17 @@ public class QuickTwoDistinctKeys {
 
   private static void sort(Comparable[] a) {
     cost = 0;
+    Comparable differentThanTheFirstOne;
+    int i = 0;
+    while (a[0].equals(a[++i]));
+    differentThanTheFirstOne = a[i];
+    if (less(a[0], differentThanTheFirstOne) ) {
+      small = a[0];
+      large = differentThanTheFirstOne;
+    } else {
+      small = differentThanTheFirstOne;
+      large = a[0];
+    }
     sort(a, 0, a.length - 1);
   }
 
@@ -65,11 +78,19 @@ public class QuickTwoDistinctKeys {
     if (lo >= hi) {
       return;
     }
+
     if ( less(a[hi], a[lo]) ) {
-      exch(a, lo, hi);
+      exch(a, hi--, lo++);
+    } else if ( equals(a[hi], a[lo]) && a[lo].equals(small)) {
+      lo++;
+    } else if ( equals(a[hi], a[lo]) && a[lo].equals(large)) {
+      hi--;
+    } else {
+      lo++;
+      hi--;
     }
-    sort(a, lo + 1, hi);
-    sort(a, lo, hi - 1);
+
+    sort(a, lo, hi);
   }
 
   private static void exch(Comparable[] a, int i, int j) {
@@ -82,6 +103,11 @@ public class QuickTwoDistinctKeys {
   private static boolean less(Comparable v, Comparable w) {
     cost++;
     return v.compareTo(w) < 0;
+  }
+
+  private static boolean equals(Comparable v, Comparable w) {
+    cost++;
+    return v.compareTo(w) == 0;
   }
 
   private static void show(Comparable[] a) {
