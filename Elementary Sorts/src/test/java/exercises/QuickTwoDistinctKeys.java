@@ -42,13 +42,18 @@ public class QuickTwoDistinctKeys {
     sortArrayFromFile("array9.txt");
   }
 
+  @Test
+  public void sort_twoKeysArray10_isSorted() {
+    sortArrayFromFile("array10.txt");
+  }
+
   private void sortArrayFromFile(String s) {
     In in = new In(s);
     String[] a = in.readAllStrings();
     sort((Comparable[]) a);
     show(a);
     assert isSorted(a);
-    StdOut.println("Cost for exchange is: " + cost);
+    StdOut.println("Cost for sort is: " + cost);
   }
 
   private static void sort(Comparable[] a) {
@@ -75,6 +80,7 @@ public class QuickTwoDistinctKeys {
   }
 
   private static boolean less(Comparable v, Comparable w) {
+    cost++;
     return v.compareTo(w) < 0;
   }
 
