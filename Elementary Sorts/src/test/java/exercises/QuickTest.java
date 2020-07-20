@@ -35,6 +35,7 @@ public class QuickTest {
     Quick.sortWithoutShuffle(a);
     Quick.show(a);
     assert Quick.isSorted(a);
-    StdOut.println("Cost for exchange is: " + Quick.cost);
+    StdOut.println("Cost for exchange is: " + Quick.costForExchange);
+    StdOut.println("Cost for compare  is: " + Quick.costForCompare);
   }
 }
