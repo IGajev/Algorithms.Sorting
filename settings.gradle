@@ -1,2 +1,4 @@
 rootProject.name = 'Algorithms.Sorting'
 include 'Elementary Sorts'
+include 'Priority Queues'
+
